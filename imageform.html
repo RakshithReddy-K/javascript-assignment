@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Form</title>
+       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="style3.css">
+       <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<script type="text/javascript" src="gallery.js"></script>
+<script>
+function validate(){
+     var imageurl=document.imageForm.imageurl.value;
+    var name=document.imageForm.name.value;
+    var info=document.imageForm.info.value;  
+    var uploadDate=document.imageForm.upload.value;
+    var status = true;
+ 
+  
+    
+    if(imageurl.length<1){
+        
+        document.getElementById("error-url").innerHTML = "* Image Url required";
+        status=false;
+    }
+    if(name.length<1){
+        
+        document.getElementById("error-name").innerHTML = "*Name required";
+       
+        status=false;
+    }
+    //name duplication check
+    var rawData=localStorage.getItem("sessionImages");
+        var data=JSON.parse(rawData)
+        var len=data.images.length
+         for(i=0;i<len;i++)
+        {
+            if(data.images[i].name===name)
+            {
+                document.getElementById("error-name").innerHTML = "*Duplicate Name ...Not Allowed";
+                status=false;
+                break;
+            }
+        }
+      
+    if(info.length<1){
+        
+        document.getElementById("error-info").innerHTML = "*Info required";
+        status=false;
+    }
+    
+
+
+  if(status===true)
+    {
+        addImage();
+    }
+    return status ;
+}
+</script>
+<body>
+    <div class="topnav">
+        <a href="galleryadmin.html"><i class="fa fa-fw fa-image"></i>Gallery Admin </a>
+        <a href="gallery.html"><i class="fa fa-fw fa-image"></i>Gallery</a>
+        <a href="contact_me.html" >    <i class="fa fa-fw fa-envelope"></i>Contact ME</a>
+        <a href="about_me.html"><i class="fa fa-fw fa-user"></i>About ME</button></a>
+        <a href="home.html"><i class="fa fa-fw fa-home"></i>Home</a>
+    </div>
+  
+        <h2 >Image Form</h2>
+        <br>
+        
+        <form name="imageForm"  action="galleryadmin.html"  onsubmit="return validate()" >
+          <div class="form-group">
+            <label for="imageurl">Image URL : </label> <span id="error-url"></span>
+            <input type="text" id="url" name="imageurl" placeholder="Image Url">
+            </div>
+            <div class="form-group">
+            <label for="name"> Name: </label> <span id="error-name"></span>
+            <input type="text" id="name" name="name" placeholder="Image name.." >
+            </div>
+            
+            <div class="form-group">
+            <label for="info">Information </label><span id="error-info"></span>
+            <input type="text" id="info" name="info"  >
+            </div>
+            <div class="form-group">
+                <label for="upload">Upload Date: </label> <span id="error-upload"></span>
+                <br>
+                <input type="date" id="upload" name="upload"  style="margin-left: 5%; " required>
+                </div>
+                <br>
+            <input type="submit" value="Add Image"  style="margin-left: 50%;">
+          </form>
+    </div>
+
+</body>
+</html>

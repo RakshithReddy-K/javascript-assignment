@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="style3.css">
+       <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<script>
+function validate(){
+    var fname=document.contactForm.fname.value;
+    var lname=document.contactForm.lname.value;
+    var email=document.contactForm.email.value;  
+    var atposition=email.indexOf("@");  
+    var dotposition=email.lastIndexOf(".");  
+    var status = true;
+ 
+  
+    
+    if(fname.length<1){
+        
+        document.getElementById("error-fname").innerHTML = "*First Name required";
+        status=false;
+    }
+    if(lname.length<1){
+        
+        document.getElementById("error-lname").innerHTML = "*Last Name required";
+        status=false;
+    }
+    if (atposition<1 || dotposition<atposition+2 || dotposition+2>=email.length ){ 
+        document.getElementById("error-email").innerHTML = "*Enter valid email Id ";
+        status = false
+    } 
+    if(email.length<1){
+        document.getElementById("error-email").innerHTML = "*Email Required";
+        status = false
+    }
+
+
+    return status;
+}
+</script>
+<body>
+    <div class="topnav">
+      <a href="galleryadmin.html"><i class="fa fa-fw fa-image"></i>Gallery Admin </a>
+        <a href="gallery.html"><i class="fa fa-fw fa-image"></i>Gallery</a>
+        <a href="contact_me.html" >    <i class="fa fa-fw fa-envelope"></i>Contact ME</a>
+        <a href="about_me.html"><i class="fa fa-fw fa-user"></i>About ME</button></a>
+        <a href="home.html"><i class="fa fa-fw fa-home"></i>Home</a>
+    </div>
+    <div class="row">
+      <div class="column1">
+        <div class="sectiontop"> <h2 style="font-size: large;">CONTACT US</h2></div>
+        
+        <div class="container py-3 bg-dark" id="contact-b">
+            <div class="contact">
+                <div>
+                <i class="fas fa-envelope fa-2x"></i>
+                <h3>Email</h3>
+                <p>rakshithreddy@gmail.com</p>
+              </div>
+                  <br>
+                  <br>
+              <div>
+                <i class="fas fa-phone fa-2x"></i>
+                <h3>Phone</h3>
+                <p>9705567734</p>
+              </div>
+            </div>
+            </div>
+        </div>
+ 
+    <div class="column2">
+        <h2 >FILL THIS FORM FOR ANY QUERIES</h2>
+        <br>
+        
+        <form name="contactForm" action="home.html" method="POST" onsubmit="return validate()" >
+          <div class="form-group">
+            <label for="fname">First Name: </label> <span id="error-fname"></span>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            </div>
+            <div class="form-group">
+            <label for="lname">Last Name: </label> <span id="error-lname"></span>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name.." >
+            </div>
+            <div class="form-group">
+            <label for="email">Email Address: </label> <span id="error-email"></span>
+            <input type="text" id="email" name="emailId" placeholder="Your email ID.." >
+            </div>
+            <div class="form-group">
+            <label for="subject">Subject: </label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+            </div>
+            <input type="submit" value="Submit">
+          </form>
+    </div>
+
+</body>
+</html>
